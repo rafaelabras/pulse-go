@@ -1,0 +1,48 @@
+# IDE-specific files (e.g., VS Code, JetBrains)
+# JetBrains IDEs
+
+idea/*
+.idea/*
+.vscode/
+*.swp
+*.swo
+.DS_Store
+# macOS files
+
+# Go
+# Binaries for the current platform
+
+*.exe
+*.test
+*.prof
+
+# Go workspace file
+go.work.sum
+
+# Dependency directories (golang 1.11+)
+vendor/
+
+# Environment variables and sensitive config files
+# Keep your sensitive data (like database passwords) out of version control
+.env
+.env.*
+configs/*.env
+
+# Docker
+# Standard Docker ignore patterns for locally built images and volumes
+# Ensure you use a separate .dockerignore file to control what goes into the image build
+*.iml
+*.lock
+target/
+dist/
+
+# Database files (PostgreSQL)
+# These are typically handled by Docker volumes, but just in case local files are created
+pgdata/
+data/
+dump.sql
+
+# RabbitMQ
+# Log and data directories for local RabbitMQ instances (if not using Docker volumes)
+log/
+mnesia/

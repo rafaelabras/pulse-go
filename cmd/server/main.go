@@ -3,10 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/rafaelabras/pulse-go/internal/app"
-	"github.com/rafaelabras/pulse-go/internal/routes"
 	"net/http"
 	"time"
+
+	"github.com/rafaelabras/pulse-go/internal/app"
+	"github.com/rafaelabras/pulse-go/internal/routes"
 )
 
 func main() {
@@ -19,6 +20,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	defer app.DB.Close()
 
 	r := routes.SetupRoutes(app)
 	server := &http.Server{

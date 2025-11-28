@@ -25,7 +25,6 @@ vendor/
 # Environment variables and sensitive config files
 # Keep your sensitive data (like database passwords) out of version control
 .env
-.env.*
 configs/*.env
 
 # Docker
@@ -46,3 +45,6 @@ dump.sql
 # Log and data directories for local RabbitMQ instances (if not using Docker volumes)
 log/
 mnesia/
+
+/database
+./database/

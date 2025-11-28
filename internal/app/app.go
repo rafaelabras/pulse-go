@@ -4,20 +4,29 @@ package app
 // through the application, so it's viable to group structs here.
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/rafaelabras/pulse-go/internal/api"
+	"github.com/rafaelabras/pulse-go/internal/store"
 )
 
 type Application struct {
 	Logger      *log.Logger
+	DB          *sql.DB
 	UserHandler *api.UserHandler
 }
 
 func NewApplication() (*Application, error) {
+	pgDB, err := store.Open()
+
+	if err != nil {
+		return nil, err
+	}
+
 	logger := log.New(os.Stdout, "[INFO] ", log.Ldate|log.Ltime)
 
 	// stores
@@ -27,6 +36,7 @@ func NewApplication() (*Application, error) {
 
 	app := &Application{
 		Logger:      logger,
+		DB:          pgDB,
 		UserHandler: userhandler,
 	}
 	return app, nil

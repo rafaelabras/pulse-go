@@ -12,6 +12,7 @@ import (
 
 	"github.com/rafaelabras/pulse-go/internal/api"
 	"github.com/rafaelabras/pulse-go/internal/store"
+	"github.com/rafaelabras/pulse-go/migrations"
 )
 
 type Application struct {
@@ -25,6 +26,12 @@ func NewApplication() (*Application, error) {
 
 	if err != nil {
 		return nil, err
+	}
+
+	err = store.MigrateFS(pgDB, migrations.FS, ".")
+
+	if err != nil {
+		panic(err)
 	}
 
 	logger := log.New(os.Stdout, "[INFO] ", log.Ldate|log.Ltime)

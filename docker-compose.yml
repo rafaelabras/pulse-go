@@ -4,8 +4,8 @@ services:
     image: postgres:18-alpine
     restart: unless-stopped
     environment:
-      POSTGRES_USER: pulse
-      POSTGRES_PASSWORD: pulse_pwd
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: pulse_db
     ports:
       - "5432:5432"
@@ -13,7 +13,7 @@ services:
       - db_data:/var/lib/postgresql/data:rw
       - /etc/localtime:/etc/localtime:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U pulse -d pulse_db"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d pulse_db"]
       interval: 15s
       timeout: 5s
       retries: 3
